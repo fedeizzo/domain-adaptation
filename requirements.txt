@@ -1,0 +1,9 @@
+# GENERAL
+numpy
+pandas
+scipy
+matplotlib
+torch
+torchvision
+jupyterlab
+tqdm
