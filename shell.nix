@@ -29,4 +29,9 @@ pkgs.mkShell {
     python39Packages.jupyter_console
     python39Packages.jupyter-client
   ] ++ [ python-mach ];
+  LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath [pkgs.stdenv.cc.cc]}";
+  shellHook = ''
+    export LD_PRELOAD="/run/opengl-driver/lib/libcuda.so"
+  '';
+
 }
