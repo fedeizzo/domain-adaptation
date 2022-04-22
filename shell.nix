@@ -19,19 +19,35 @@ let
       _defualt = "sdist";
     };
   };
+  pythonDeps = pkgs.python39.withPackages
+    (ps: [
+      ps.ipython
+      ps.matplotlib-inline
+      ps.jupyter
+      ps.jupyter_console
+      ps.jupyter-client
+      ps.pytorch-bin
+      ps.torchvision-bin
+    ]);
+  buildInputs = [
+    pkgs.python39
+    pythonDeps
+    python-mach
+  ];
+  # LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath [pkgs.stdenv.cc.cc]}";
+  # shellHook = ''
+  #   export LD_PRELOAD="/run/opengl-driver/lib/libcuda.so"
+  # '';
+  # pkgs.mkShell {
+  # }
+  shell = builtins.getEnv "SHELL";
 in
-pkgs.mkShell {
-  buildInputs = with pkgs; [
-    python39
-    python39Packages.ipython
-    python39Packages.matplotlib-inline
-    python39Packages.jupyter
-    python39Packages.jupyter_console
-    python39Packages.jupyter-client
-  ] ++ [ python-mach ];
-  LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath [pkgs.stdenv.cc.cc]}";
-  shellHook = ''
-    export LD_PRELOAD="/run/opengl-driver/lib/libcuda.so"
-  '';
-
-}
+(pkgs.buildFHSUserEnv {
+  name = "domain-adaptation";
+  targetPkgs = pkgs: (with pkgs; [
+    pkgs.python39
+    pkgs.python39Packages.pip
+    pkgs.python39Packages.setuptools
+  ]);
+  runScript = shell;
+}).env
