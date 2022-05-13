@@ -10,3 +10,4 @@ jupyterlab
 ipython
 tqdm
 tabulate
+umap-learn
