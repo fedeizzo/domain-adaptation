@@ -7,4 +7,6 @@ torch --extra-index-url https://download.pytorch.org/whl/cu113
 torchvision --extra-index-url https://download.pytorch.org/whl/cu113
 torchinfo
 jupyterlab
+ipython
 tqdm
+tabulate
