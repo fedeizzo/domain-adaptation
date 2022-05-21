@@ -1,6 +1,7 @@
 # project
 data
 *.pkl
+.aim
 
 # NIX and emacs
 .envrc

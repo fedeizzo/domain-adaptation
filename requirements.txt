@@ -1,5 +1,6 @@
 # GENERAL
 aim==3.7.4
+Jinja2==3.0.3
 numpy
 pandas
 scipy
