@@ -13,3 +13,4 @@ ipython
 tqdm
 tabulate
 umap-learn
+seaborn
